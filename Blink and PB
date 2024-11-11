@@ -1,0 +1,35 @@
+//The goal is to display the value of PB without using delay. Main theme millis
+int ledState = LOW;  // ledState used to set the LED
+unsigned long previousMillis = 0;  // will store last time LED was updated
+const long interval = 5000;  // interval at which to blink (milliseconds)
+void setup() {
+//Set pin 2 as output and set pin 3 as input 
+pinMode(2, OUTPUT);
+pinMODE(3, INPUT);
+Serial.begin(9600);
+
+}
+
+void loop() {
+int buttonState = digitalRead(3);
+  Serial.print("Button State = ");
+  Serial.println(buttonState);
+
+
+
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+
+    // if the LED is off turn it on and vice-versa:
+    if (ledState == LOW) {
+      ledState = HIGH;
+    } else {
+      ledState = LOW;
+    }
+
+    // set the LED with the ledState of the variable:
+    digitalWrite(2, ledState);
+}
